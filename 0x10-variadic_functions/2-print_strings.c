@@ -22,15 +22,16 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	{
 		str = va_arg(list, char *);
 
-		if (str == NULL)
-			printf("(nil)");
-		else
+		if (str)
 			printf("%s", str);
+		else
+			printf("(nil)");
 
-		if (list != (n - 1) && separator != NULL)
+		if (i < n - 1)
+			if (separator)
 			printf("%s", separator);
 
 	}
 	printf("\n");
-	va_end(list)
+	va_end(list);
 }
