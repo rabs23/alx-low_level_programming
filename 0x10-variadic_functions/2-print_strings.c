@@ -1,5 +1,7 @@
 #include "variadic_functions.h"
 #include <string.h>
+#include <stdarg.h>
+#include <stdio.h>
 
 /**
  * print_strings - a function that print strings followed by a new line
@@ -19,14 +21,15 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	for (i = 0; i < n; i++)
 	{
 		str = va_arg(list, char *);
-		if(!str)
-			str = "nil";
-		if (!separator)
-			printf("%s", str);
-		else if (separator && i == 0)
-                        printf("%s", str);
+
+		if (str == NULL)
+			printf("(nil)");
 		else
-			printf("%s%s", separator, str);
+			printf("%s", str);
+
+		if (list != (n - 1) && separator != NULL)
+			printf("%s", separator);
+
 	}
 	printf("\n");
 	va_end(list)
